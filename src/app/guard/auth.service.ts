@@ -9,6 +9,7 @@ export class AuthService {
 
   private token;
   private usuarioAutenticado = false;
+  public teste;
 
   constructor(private router: Router) { 
     
