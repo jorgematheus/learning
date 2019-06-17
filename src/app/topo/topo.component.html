@@ -1,0 +1,61 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg elegant-color">
+
+  <!-- Navbar brand -->                     
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="home"><i class="fas fa-graduation-cap"></i> E-learning </a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto menu-main">
+        <li class="nav-item dropdown dropdown-admin" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <i class="fas fa-cog"></i> Administração<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#"><i class="fas fa-users"></i> Grupos de Usuário</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#"><i class="fas fa-trash-alt"></i> Lixeira</a>                              
+            </div>
+        </li>
+        <li class="nav-item dropdown dropdown-conteudos" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                <i class="fas fa-book"></i> Conteúdos<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" routerLink="classes" mdbWavesEffect href="#">Turmas</a>
+                <a class="dropdown-item waves-light" routerLink="courses" mdbWavesEffect href="#">Cursos</a>     
+                <a class="dropdown-item waves-light" routerLink="lessons" mdbWavesEffect href="#">Aulas</a>   
+                <a class="dropdown-item waves-light" routerLink="contents" mdbWavesEffect href="#">Conteúdos</a>                            
+            </div>
+        </li>
+          <li class="nav-item dropdown-usuarios">
+              <a class="nav-link waves-light" routerLink="users" mdbWavesEffect><i class="fas fa-user"></i> Usuários</a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown dropdown-relatorios" dropdown>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                <i class="fas fa-file-download"></i> Relatórios<span class="caret"></span></a>
+              <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Cursos Criados</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Cursos em Andamento</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Usuários</a>                  
+              </div>
+          </li>               
+      </ul>
+      <!-- Links -->
+
+      <ul class="navbar-nav ml-auto menu-secundario">       
+        <li class="nav-item meu-perfil">
+            <a class=" nav-link waves-light" routerLink="profile/me" mdbWavesEffect><i class="fas fa-user"> </i>  Meu Perfil</a>
+        </li>
+        <li class="nav-item logout">
+            <a class="nav-link waves-effect waves-light" (click)="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+            </a>
+          </li> 
+      </ul>     
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

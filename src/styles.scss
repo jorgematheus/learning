@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #f8f9fa !important;
+}
+
+
+
+//zerando configurações do menu default do bootstrap
+.navbar-toggler-icon {
+     vertical-align: top !important;
+     height: 0px !important; 
+     
+}
+
+//adicionando icone de menu hamburguer
+span.navbar-toggler-icon:before {
+    content: "";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #fff; 
+    cursor: pointer;
+}
+
+//estilos validações de formulário
+.form-group.input-invalido {
+    input, select {
+        border: 1px solid #dc3545;
+        color: #dc3545;              
+    }
+}
+
+
+@media screen and (min-width: 960px) {
+    .navbar-expand-lg {
+        height: 40px !important;
+    }
+}

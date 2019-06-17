@@ -1,0 +1,88 @@
+$admin-color: #FF8C00;
+$conteudos-color: #339AF0;
+$usuarios-color: #4CAF50;
+$relatorios-color: #E91E63;
+
+@mixin font-menu($size, $color) {
+    font: {
+        family:  Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+        size: $size;        
+    }
+    color: $color;
+}
+
+.navbar-brand {    
+    @include font-menu(1em, #fff );    
+}
+
+.dropdown-admin {
+    a {
+        @include font-menu(14px, $admin-color);
+    }
+    div a {
+        @include font-menu(0.8em, $admin-color);
+    }    
+}
+
+.dropdown-conteudos {
+    a {
+        @include font-menu(14px, $conteudos-color);
+    }
+    div a {
+        @include font-menu(0.8em, $conteudos-color);
+    }
+}
+
+.dropdown-usuarios {
+    a {
+        @include font-menu(14px, $usuarios-color);
+    }
+    div a {
+        @include font-menu(0.8em, $usuarios-color);
+    }
+}
+
+.dropdown-relatorios {
+    a {
+        @include font-menu(14px, $relatorios-color);
+    }
+    div a {
+        @include font-menu(0.8em, $relatorios-color);
+    }
+}
+
+.meu-perfil {    
+    a {
+        @include font-menu(14px, #fff);
+    }
+}
+
+.logout {    
+    @include font-menu(0.9em, #fff);
+}
+
+@media screen and (min-width: 960px ) {
+    .navbar-brand {        
+        position: absolute;
+        right: 91%;
+        top: 2px;
+    }
+
+    .menu-main {
+        position: absolute;    
+        width: 60%;
+        right: 25%;
+    }
+
+    .menu-secundario {
+        position: absolute;
+        left: 75%;
+        width: 25%;
+    }
+
+    .logout {
+        position: absolute;
+        left: 85%;
+    }
+
+}
