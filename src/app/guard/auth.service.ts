@@ -8,11 +8,9 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private token;
-  private usuarioAutenticado = false;
-  public teste;
+  private usuarioAutenticado = false; 
 
-  constructor(private router: Router) { 
-    
+  constructor(private router: Router) {     
   }
 
   validarUsuario(usuario: Usuario) {
@@ -30,12 +28,16 @@ export class AuthService {
 
   }
 
-  isAutenticado(): boolean {
+  isAutenticado(): boolean {   
+    if(localStorage.getItem('token')) {
+      this.token = localStorage.getItem('token');
+      this.usuarioAutenticado = true;
+    } 
     return this.usuarioAutenticado;
   }
 
   getToken(): string {
-    return window.localStorage.getItem('token');
+    return this.token;
   }
 
   logout(): void {

@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit {
   //acesso fácil aos controles
   get f() { return this.formLogin.controls }
 
-  ngOnInit() {    
+  ngOnInit() {  
+    
+    console.log('token: ', this.authService.getToken())
+    console.log('usuario autenticado: ', this.authService.isAutenticado())
   }
 
   validarLogin() {

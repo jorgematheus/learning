@@ -12,4 +12,8 @@ export class UsuariosComponent implements OnInit {
   ngOnInit() {
   }
 
+  clica() {
+   alert('clicado')
+  }
+
 }

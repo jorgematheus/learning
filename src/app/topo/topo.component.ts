@@ -9,10 +9,12 @@ import { AuthService } from '../guard/auth.service';
 })
 export class TopoComponent implements OnInit {
 
+  usuarioAutenticado: boolean = false;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    
+    this.usuarioAutenticado = this.authService.isAutenticado();   
   }
 
   logout() {
