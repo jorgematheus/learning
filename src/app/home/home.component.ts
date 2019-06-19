@@ -8,10 +8,12 @@ import { AuthService } from '../guard/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private AuthService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('usuario autenticado: ', this.AuthService.isAutenticado())
+    //console.log('usuario autenticado: ', this.AuthService.isAutenticado())
+
+    console.log('nome: ', this.authService.NomeUsuario, ' tipo: ',this.authService.TipoUsuario, ' email: ', this.authService.EmailUsuario)
   }
 
 }

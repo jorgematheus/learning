@@ -57,6 +57,12 @@ $relatorios-color: #E91E63;
     }
 }
 
+.usuario-nome {    
+    a {
+        @include font-menu(14px, #fff);
+    }
+}
+
 .logout {    
     @include font-menu(0.9em, #fff);
 }

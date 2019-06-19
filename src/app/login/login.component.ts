@@ -26,8 +26,12 @@ export class LoginComponent implements OnInit {
   get f() { return this.formLogin.controls }
 
   ngOnInit() {  
+
+    /*this.authService.mostrarMenu().subscribe(item => {
+      console.log('observando: ', item)
+    })*/
     
-    console.log('token: ', this.authService.getToken())
+    console.log('token: ', this.authService.TokenUsuario)
     console.log('usuario autenticado: ', this.authService.isAutenticado())
   }
 
@@ -42,7 +46,7 @@ export class LoginComponent implements OnInit {
       this.usuario.senha = this.f.senha.value;
 
       this.authService.validarUsuario(this.usuario);
-      console.log(this.authService.getToken())
+      console.log(this.authService.TokenUsuario)
     }
     
     

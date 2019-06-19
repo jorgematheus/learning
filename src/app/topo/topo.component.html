@@ -46,16 +46,22 @@
       </ul>
       <!-- Links -->
 
-      <ul class="navbar-nav ml-auto menu-secundario">       
-        <li class="nav-item meu-perfil">
-            <a class=" nav-link waves-light" routerLink="profile/me" mdbWavesEffect><i class="fas fa-user"> </i>  Meu Perfil</a>
-        </li>
-        <li class="nav-item logout">
-            <a class="nav-link waves-effect waves-light" (click)="logout()">
-              <i class="fas fa-sign-out-alt"></i>
-            </a>
-          </li> 
-      </ul>     
+      <ng-template [ngIf]="usuarioAutenticado">
+        <ul class="navbar-nav ml-auto menu-secundario">       
+            <li class="nav-item meu-perfil">
+                <a class=" nav-link waves-light" routerLink="profile/me" mdbWavesEffect><i class="fas fa-user"> </i>  Meu Perfil</a>
+            </li>
+            <li class="nav-item usuario-nome">
+                <a class="nav-link waves-light" style="color: #fff">Olá, {{ nomeUsuario }} !</a>
+            </li>
+            <li class="nav-item logout">
+                <a class="nav-link waves-effect waves-light" (click)="logout()">
+                  <i class="fas fa-sign-out-alt"></i>
+                </a>
+              </li> 
+          </ul> 
+      </ng-template>
+                
   </links>
   <!-- Collapsible content -->
 

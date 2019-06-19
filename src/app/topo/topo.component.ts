@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../guard/auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,10 +12,21 @@ export class TopoComponent implements OnInit {
 
   usuarioAutenticado: boolean = false;
 
+  private inscricao: Subscription;
+  private nomeUsuario: string;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.usuarioAutenticado = this.authService.isAutenticado();   
+    this.inscricao = this.authService.$mostrarMenu.subscribe(item => {     
+      this.usuarioAutenticado = item;      
+    });  
+    
+    this.nomeUsuario = this.authService.NomeUsuario;
+  }  
+
+  ngOnDestroy() {
+   this.inscricao.unsubscribe();
   }
 
   logout() {

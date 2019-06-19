@@ -1,7 +1,10 @@
 <h2 class="h1-responsive font-weight-bold text-center my-5"><i class="fas fa-users    "> </i> Usuários</h2>
-<div class="row">   
+
+    <button class="btn btn-outline-primary" routerLink="/users/new">Novo Usuário</button>
+
+<div class="row">     
   
-    <div class="col-md-3 animated fadeIn card-usuario">
+    <div *ngFor="let u of usuarios" class="col-md-3 animated fadeIn card-usuario">
       <!--Card-->
       <mdb-card>
   
@@ -18,13 +21,13 @@
         <mdb-card-body class="text-center">
           <!--Card content-->
           <h4 class="card-title">
-            <strong>Jorge Nunes</strong>
+            <strong>{{ u.nome }}</strong>
           </h4>
-          <h5>Web developer</h5>
+          <h5>{{ u.funcao }}</h5>
   
           <mdb-card-text>
-            <b>Administrador</b> <br>
-            Gosta de tecnologia e games.
+            <b>{{ u.tipo }}</b> <br>
+            {{ u.descricao }}
           </mdb-card-text>            
           
               <a type="button" class="btn-floating btn-small  waves-light" mdbWavesEffect>
@@ -35,6 +38,8 @@
         <!--/.Card content-->
   
       </mdb-card>
-      <!--/.Card-->
+      <!--/.Card-->     
+    
     </div>
   </div>
+  
