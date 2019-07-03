@@ -1,0 +1,6 @@
+{
+    "usuarios": [
+        { "id": 1, "nome": "Jorge", "email": "jorge.matheus10@hotmail.com", "senha": "123456", "tipo": "Administrador" },
+        { "id": 2, "nome": "Matheus", "email": "matheus@hotmail.com", "senha": "123456", "tipo": "Editor" }
+    ]
+}

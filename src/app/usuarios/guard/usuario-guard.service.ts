@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../../guard/auth.service';
 import { Observable } from 'rxjs';
 
@@ -13,23 +13,24 @@ export class UsuarioGuardService implements CanActivateChild {
   canActivateChild(
     route: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot
-    ): Observable<boolean>|Promise<boolean>|boolean {
-
-      console.log('ativou filha')
+    ): Observable<boolean>|Promise<boolean>|boolean {      
 
       if(this.authService.isAutenticado) {
-
         console.log('rota filha, user autenticado', state)
 
-        if(this.authService.TipoUsuario == 'administrador' ) {
-          console.log('usuario adm')
-          return true;
-        } 
+        if(this.authService.TipoUsuario == 'Administrador' || this.authService.TipoUsuario == 'Editor') {
 
-        return false;
-      }
-
-      return false;
+          if(this.authService.TipoUsuario == 'Editor') {
+            if(state.url != '/users') {
+              return false;
+            }
+            else return true;
+          }  
+          else return true;
+          
+        }         
+      } 
+      else return false;     
      
   }
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService as AuthGuard } from './guard/auth-guard.service';
-import { UsuarioGuardService as UsuarioGuard } from './usuarios/guard/usuario-guard.service';
 
 const routes: Routes = [
   { 
@@ -24,19 +23,23 @@ const routes: Routes = [
   },
   {
     path: 'lessons', 
-    loadChildren: () => import('./conteudos/aulas/aulas.module').then(m => m.AulasModule)
+    loadChildren: () => import('./conteudos/aulas/aulas.module').then(m => m.AulasModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'contents', 
-    loadChildren: () => import('./conteudos/conteudos/conteudos.module').then(m => m.ConteudosModule)
+    loadChildren: () => import('./conteudos/conteudos/conteudos.module').then(m => m.ConteudosModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'courses', 
-    loadChildren: () => import('./conteudos/cursos/cursos.module').then(m => m.CursosModule)
+    loadChildren: () => import('./conteudos/cursos/cursos.module').then(m => m.CursosModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'classes', 
-    loadChildren: () => import('./conteudos/turmas/turmas.module').then(m => m.TurmasModule)
+    loadChildren: () => import('./conteudos/turmas/turmas.module').then(m => m.TurmasModule),
+    canActivate: [AuthGuard]
   }  
 ];
 

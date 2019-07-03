@@ -13,16 +13,15 @@ export class TopoComponent implements OnInit {
   usuarioAutenticado: boolean = false;
 
   private inscricao: Subscription;
-  private nomeUsuario: string;
+  public nomeUsuario: string;
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-    this.inscricao = this.authService.$mostrarMenu.subscribe(item => {     
-      this.usuarioAutenticado = item;      
-    });  
-    
-    this.nomeUsuario = this.authService.NomeUsuario;
+  ngOnInit() {    
+    this.inscricao = this.authService.$mostrarMenu.subscribe(isAutenticado => {     
+      this.usuarioAutenticado = isAutenticado;  
+      this.nomeUsuario = this.authService.NomeUsuario;        
+    });      
   }  
 
   ngOnDestroy() {

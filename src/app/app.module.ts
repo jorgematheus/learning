@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { TopoModule } from './topo/topo.module';
 import { RodapeModule } from './rodape/rodape.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { RodapeModule } from './rodape/rodape.module';
     MDBBootstrapModule.forRoot(),
     TopoModule,
     RodapeModule,    
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

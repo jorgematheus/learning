@@ -11,6 +11,9 @@ import { UsuariosService } from '../usuarios/shared/usuarios.service';
 export class AuthService {
 
   private token: string;
+  private username: string;
+  private typeUser: string;
+  private email: string;
 
   private _mostrarmenuSubject = new Subject<boolean>();
 
@@ -20,8 +23,7 @@ export class AuthService {
   }
 
   mostrarMenu(mostrar: boolean) {
-    this._mostrarmenuSubject.next(mostrar);   
-   
+    this._mostrarmenuSubject.next(mostrar);      
   }  
  
   validarUsuario(usuario: Usuario) {
@@ -29,54 +31,79 @@ export class AuthService {
     if (usuario.email == 'jorge.matheus10@hotmail.com' &&
       usuario.senha == '123456') {
         let salt = Date.now();
-        this.token = btoa(usuario.email + salt);
-        window.localStorage.setItem('token', this.token);       
+        let token = btoa(usuario.email + salt);
+        
+        this.mostrarMenu(true);
+
+        this.token = token;
+        this.username = 'Jorge';
+        this.typeUser = 'Administrador';
+        this.email = 'jorge.matheus10@hotmail.com';
+
+        window.localStorage.setItem('token', token);       
         
         //guardando os dados do usuário logado
-        window.localStorage.setItem('nomeUsuario', 'Jorge');
+        window.localStorage.setItem('nomeUsuario', this.username);
         //quando tiver API:
         //nao salvar em storage o tipo, pois o usuário pode alterar via console, buscar o tipo diretamente da API
         //salvar  em uma variavel, exemplo : this.token = usuario.token (dados trazidos do banco)
-        window.localStorage.setItem('tipo', 'administrador');
+        window.localStorage.setItem('tipo', this.typeUser);
 
-        window.localStorage.setItem('email', 'jorge.matheus10@hotmail.com');   
+        window.localStorage.setItem('email', this.email);   
 
-        this.router.navigate(['home'])
+        this.router.navigate(['home']);
     }   
   }
 
-  isAutenticado(): boolean {   
+  isAutenticado(): boolean {      
     if(localStorage.getItem('token')) {
+
+     if(this.token != localStorage.getItem('token')) {
+      //caso o token gravado em storage for diferente do token
+      //do usuário, setamos o token do storage com o valor gravado
+      //na variável do usuário
+      localStorage.setItem('token', this.token);     
+     }
+
       //quando tiver API:
-      //comparar o token gravado na api com o token gravado em storage, pois o usuario pode injetar um token e fingir estar autenticado      
-      this.token = localStorage.getItem('token');      
+      //comparar o token gravado na api com o token gravado em storage, pois o usuario pode injetar um token e fingir estar autenticado             
       this.mostrarMenu(true);
       return true;
-    } 
-    
-    else {      
-      this.mostrarMenu(false);
-      return false;
-    }
+    }     
+        
+    //this.mostrarMenu(false);
+    //return false;
    
   }
 
   get NomeUsuario(): string {
-    return window.localStorage.getItem('nomeUsuario');    
+    if(this.username == undefined) {
+      this.username = localStorage.getItem('nomeUsuario');
+    }
+    return this.username;
   }
 
   get TipoUsuario(): string {
     //quando tiver API:
     //buscar o tipo diretamente da API
     //não gravar no navegador pois o usuário pode alterar via console do navegador
-    return window.localStorage.getItem('tipo');
+    if(this.typeUser == undefined) {
+      this.typeUser = localStorage.getItem('tipo');
+    }
+    return this.typeUser;
   }
 
   get EmailUsuario(): string {
-    return window.localStorage.getItem('email');
+    if(this.email == undefined) {
+      this.email = localStorage.getItem('email');
+    }
+    return this.email;
   }
 
   get TokenUsuario(): string {
+    if(this.token == undefined) {
+      this.token = localStorage.getItem('token');
+    }
     return this.token;
   }
 
@@ -85,7 +112,13 @@ export class AuthService {
     window.localStorage.removeItem('tipo');
     window.localStorage.removeItem('email');
     window.localStorage.removeItem('token');
-    this.token = null;        
-    this.router.navigate(['login'])    
+
+    this.token = undefined;   
+    this.username = undefined;
+    this.typeUser = undefined;
+    this.email = undefined;    
+
+    this.router.navigate(['login']);
+    this.mostrarMenu(false);    
   }
 }

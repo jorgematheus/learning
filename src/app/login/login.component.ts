@@ -1,7 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../usuarios/shared/usuario.model';
 import { AuthService } from '../guard/auth.service';
+import { Router } from '@angular/router';
+import { LoginService } from './shared/login.service';
+
+//import { LoginService } from './shared/login.service';
+
 
 @Component({
   selector: 'app-login',
@@ -14,30 +19,52 @@ export class LoginComponent implements OnInit {
 
   usuario: Usuario;
   formLogin: FormGroup;
+  formTeste: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { 
+  cepConsultado = false;
+
+
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService,
+    private router: Router,
+    private loginService: LoginService   
+    ) { 
     this.formLogin = this.fb.group({
       email: ['jorge.matheus10@hotmail.com', [Validators.required, Validators.email]],
-      senha: ['123456', [Validators.required]]    
+      senha: ['123456', [Validators.required]]
+    })
+
+    this.formTeste = this.fb.group({
+      cep: [null, [Validators.required]],
+      rua: [null],
+      bairro: [null],
+      localidade: [null]
     })
   }
 
   //acesso fácil aos controles
   get f() { return this.formLogin.controls }
 
-  ngOnInit() {  
+  ngOnInit() { 
+    if(this.authService.isAutenticado) {
+     this.router.navigate(['home']);
+    }
 
-    /*this.authService.mostrarMenu().subscribe(item => {
-      console.log('observando: ', item)
-    })*/
-    
-    console.log('token: ', this.authService.TokenUsuario)
-    console.log('usuario autenticado: ', this.authService.isAutenticado())
+    console.log('nome: ', this.authService.NomeUsuario, ' tipo: ',this.authService.TipoUsuario, ' email: ', this.authService.EmailUsuario)
+
+    this.loginService.listUsers().subscribe((data: any) => {
+      console.log(data)
+    })
   }
 
-  validarLogin() {
-    this.f.email.markAsTouched();
-    this.f.senha.markAsTouched();
+  validarLogin() {  
+    //marcando todos os campos como touched
+    Object.keys(this.formLogin.controls).forEach(controle => {
+      const control = this.formLogin.get(controle);
+      control.markAsTouched();
+    })
+    
 
     if (this.formLogin.valid) {
 

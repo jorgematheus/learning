@@ -1,0 +1,28 @@
+<form [formGroup]="formUsuario" >
+  <div class="form-row">    
+      <div class="form-group col-md-6">
+         <label class="label-foto" for="foto">Foto</label>          
+            <img src="../../../assets/avatar/user-profile-default.png"
+            class="rounded float-left image-profile" alt="...">               
+          <input type="file" class="form-control-file" id="foto">  
+        </div>
+        <div class="form-group col-md-6 form-nome">
+          <label for="nome">Nome*</label>
+          <input type="text" id="nome" class="form-control is-invalid" placeholder="Nome">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">E-mail*</label>
+          <input type="email" id="email" class="form-control" placeholder="E-mail">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="celular">Celular</label>
+          <input type="text" id="celular" class="form-control" placeholder="Ex: (11) 91234-5678">
+        </div>        
+   </div>
+</form>
+
+
+
+
+
+    <ng-datepicker [(ngModel)]="options"></ng-datepicker>

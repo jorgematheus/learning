@@ -10,9 +10,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-    //console.log('usuario autenticado: ', this.AuthService.isAutenticado())
+  token;
 
+  ngOnInit() {
+
+    this.token = this.authService.TokenUsuario;
     console.log('nome: ', this.authService.NomeUsuario, ' tipo: ',this.authService.TipoUsuario, ' email: ', this.authService.EmailUsuario)
   }
 

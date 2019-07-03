@@ -4,10 +4,13 @@ import { UsuariosComponent } from './usuarios.component';
 import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 import { UsuarioGuardService as UsuarioGuard } from './guard/usuario-guard.service';
+import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 
 const routes: Routes = [
-  { path: '', component: UsuariosComponent, children: [
-    { path: 'new', component: NovoUsuarioComponent, canActivateChild: [UsuarioGuard] },
+  { path: '', component: UsuariosComponent, canActivateChild: [UsuarioGuard],  children: [
+    { path: '', component: ListaUsuariosComponent },
+    { path: 'list', component: ListaUsuariosComponent },
+    { path: 'new', component: NovoUsuarioComponent },
     { path: 'edit/:id', component: EditarUsuarioComponent } 
   ] }
 ];
