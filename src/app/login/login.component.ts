@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
     console.log('nome: ', this.authService.NomeUsuario, ' tipo: ',this.authService.TipoUsuario, ' email: ', this.authService.EmailUsuario)
 
-    this.loginService.listUsers().subscribe((data: any) => {
+    this.loginService.listUsers().subscribe((data: Usuario[]) => {
       console.log(data)
     })
   }
