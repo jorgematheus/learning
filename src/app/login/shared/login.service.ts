@@ -12,10 +12,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   listUsers(): Observable<any> {
-
+   
+    //return list users
     return this.http.get('/assets/mocks/usuarios.json')
     .pipe(
-      map((usuarios: { usuarios: Usuario }) => usuarios.usuarios)
+      map((usuarios: { usuarios: Usuario  }) => usuarios.usuarios)
     )
   }
 }
